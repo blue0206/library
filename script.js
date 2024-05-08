@@ -10,6 +10,16 @@ function Book(title, author, pages, read)
     this.read = read;
 }
 
+//Function to add book based on user input
+function addBook()
+{
+    let title = document.querySelector('#book-title').value;
+    let author = document.querySelector('#author').value;
+    let pages = document.querySelector('#pages').value;
+    let read = document.querySelector('#read:checked').value == 'yes' ? true : false;
+
+    myLibrary.push(new Book(title, author, pages, read));
+}
 
 // Show modal dialog for adding books upon clicking the
 // 'New Book' button
