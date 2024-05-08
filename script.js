@@ -70,7 +70,7 @@ function addToDisplay(bookObject)
     book.appendChild(pages);
 
     const read = document.createElement('div');
-    read.textContent = bookObject.read==true ? "Finished reading." : "Not yet read.";
+    read.textContent = bookObject.read==true ? "READ" : "NOT READ";
     read.setAttribute('class', 'read');
     book.appendChild(read);
 
