@@ -35,14 +35,11 @@ body {
 header {
 	display: grid;
 	place-content: center;
-	border: 1px solid black;
 }
 
 main {
 	display: grid;
 	grid-template-rows: auto 1fr;
-	
-	border: 1px solid black;
 }
 
 .configure {
@@ -50,10 +47,7 @@ main {
 	place-content: center;
 
 	padding: 32px;
-}
-
-.books {
-	padding: 32px;
+	border: 1px solid black;
 }
 
 button, input[type="radio"] {
@@ -136,4 +130,47 @@ form button {
 .cancel-btn:focus, .cancel-btn:active, .cancel-btn:hover {
 	background-color: hsla(0, 81%, 65%, 0.692);
 	color: white;
+}
+
+/* Book display styling */
+.books {
+	padding: 32px;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	gap: 16px;
+}
+
+.book {
+    background-color:hsla(256, 25%, 30%, 0.514);
+	max-width: 350px;
+	max-height: 350px;
+	padding: 32px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+}
+
+.title {
+	font-weight: 800;
+}
+
+.author {
+	font-style: italic;
+}
+.author::before {
+	content: "by ";
+}
+
+.pages::after {
+	content: " pages";
+}
+
+.read {
+	color: white;
+	font-weight: 800;
+	width: 100%;
 }
