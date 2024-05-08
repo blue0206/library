@@ -69,11 +69,38 @@ function addToDisplay(bookObject)
     pages.setAttribute('class', 'pages');
     book.appendChild(pages);
 
-    const read = document.createElement('div');
-    read.textContent = bookObject.read==true ? "READ" : "NOT READ";
+    const read = document.createElement('button');
+    if (bookObject.read == true)
+    {
+        read.textContent = "READ";
+        read.style.backgroundColor = "green";
+    }
+    else
+    {
+        read.textContent = "NOT READ";
+        read.style.backgroundColor = "red";
+    }
     read.setAttribute('class', 'read');
+    toggleRead(read);
     book.appendChild(read);
 
     //Append book to display.
     display.appendChild(book);
+}
+
+//Function to change 'read' status.
+function toggleRead(read)
+{
+    read.addEventListener('click', () => {
+        if (read.textContent == "READ") 
+        {
+          read.textContent = "NOT READ";
+          read.style.backgroundColor = "red";
+        } 
+        else 
+        {
+          read.textContent = "READ";
+          read.style.backgroundColor = "green";
+        }
+    });
 }
