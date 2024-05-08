@@ -64,6 +64,8 @@ body {
 header {
 	display: grid;
 	place-content: center;
+
+	background-color: hsl(52, 71%, 96%);
 }
 
 main {
@@ -77,6 +79,8 @@ main {
 
 	padding: 32px;
 	border: 1px solid black;
+
+	background-color: hsl(204, 100%, 50%);
 }
 
 button, input[type="radio"] {
@@ -85,6 +89,17 @@ button, input[type="radio"] {
 
 button {
 	border: none;
+	border-radius: 11px;
+}
+
+button.new-book {
+	padding: 8px;
+	background-color: hsl(0, 0%, 75%);
+	font-weight: 800;
+}
+
+.new-book:focus, .new-book:active, .new-book:hover {
+	background-color: hsla(0, 0%, 100%, 0.945);
 }
 
 /* Styling dialog */
@@ -138,10 +153,6 @@ input:focus, input:active, input:hover {
 	background-color: hsla(0, 0%, 82%, 0.514);
 }
 
-form button {
-	border-radius: 11px;
-}
-
 .submit-btn {
 	background-color: hsl(204, 100%, 50%);
 	color: hsl(0, 0%, 100%);
@@ -168,13 +179,16 @@ form button {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 	gap: 16px;
+
+	background-color: hsl(207, 70%, 87%);
 }
 
 .book {
-    background-color:hsla(256, 25%, 30%, 0.514);
+    background-color:hsla(257, 37%, 50%, 0.514);
 	max-width: 350px;
 	max-height: 350px;
 	padding: 32px;
+	border-radius: 16px;
 
 	display: flex;
 	flex-direction: column;
@@ -203,10 +217,16 @@ form button {
 	font-weight: 800;
 	width: 100%;
 }
+.read:hover {
+	filter: brightness(80%);
+}
 
 .remove {
 	background-color: rgb(92, 3, 3);
 	color: white;
 	font-weight: 800;
 	width: 100%;
+}
+.remove:hover {
+	filter: brightness(80%);
 }
