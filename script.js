@@ -16,10 +16,18 @@ function addBook()
     let title = document.querySelector('#book-title').value;
     let author = document.querySelector('#author').value;
     let pages = document.querySelector('#pages').value;
-    let read = document.querySelector('#read:checked').value == 'yes' ? true : false;
+    let read = document.querySelector('[name="read"]:checked').value == "yes" ? true : false;
 
     myLibrary.push(new Book(title, author, pages, read));
 }
+
+//Attaching event listener to submit button to add new book
+//to library.
+const submitBtn = document.querySelector('.submit-btn');
+submitBtn.addEventListener('click', () => {
+    addBook();
+    dialog.close();
+})
 
 // Show modal dialog for adding books upon clicking the
 // 'New Book' button
