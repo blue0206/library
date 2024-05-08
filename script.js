@@ -18,7 +18,9 @@ function addBook()
     let pages = document.querySelector('#pages').value;
     let read = document.querySelector('[name="read"]:checked').value == "yes" ? true : false;
 
-    myLibrary.push(new Book(title, author, pages, read));
+    let book = new Book(title, author, pages, read);
+    myLibrary.push(book);
+    addToDisplay(book);
 }
 
 //Attaching event listener to submit button to add new book
@@ -42,3 +44,36 @@ const cancelBtn = document.querySelector('.cancel-btn');
 cancelBtn.addEventListener('click', () => {
     dialog.close();
 });
+
+//Function for adding book to display.
+function addToDisplay(bookObject)
+{
+    const display = document.querySelector('.books');
+    
+    //Boilerplate for a single book.
+    const book = document.createElement('div');
+    book.setAttribute('class', 'book');
+
+    const title = document.createElement('div');
+    title.textContent = bookObject.title;
+    title.setAttribute('class', 'title');
+    book.appendChild(title);
+
+    const author = document.createElement('div');
+    author.textContent = bookObject.author;
+    author.setAttribute('class', 'author');
+    book.appendChild(author);
+
+    const pages = document.createElement('div');
+    pages.textContent = bookObject.pages;
+    pages.setAttribute('class', 'pages');
+    book.appendChild(pages);
+
+    const read = document.createElement('div');
+    read.textContent = bookObject.read==true ? "Finished reading." : "Not yet read.";
+    read.setAttribute('class', 'read');
+    book.appendChild(read);
+
+    //Append book to display.
+    display.appendChild(book);
+}
