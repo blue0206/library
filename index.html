@@ -13,7 +13,38 @@
     </header>
     <main>
         <section class="configure">
-            <button>New Book</button>
+            <button class="add-book">New Book</button>
+            <dialog>
+                <form>
+                    <div class="form-element">
+                        <label for="book-title">Book Title</label>
+                        <input type="text" name="book-title" id="book-title" required>
+                    </div>
+                    <div class="form-element">
+                        <label for="author">Author</label>
+                        <input type="text" name="author" id="author" required>
+                    </div>
+                    <div class="form-element">
+                        <label for="pages">Pages</label>
+                        <input type="number" name="pages" id="pages" required>
+                    </div>
+                    <div class="form-element">
+                        <div>Have you read the book?</div>
+                        <div class="radio">
+                            <label for="read-yes">Yes</label>
+                            <input type="radio" name="read" id="read-yes" value="yes">
+                        </div>
+                        <div class="radio">
+                            <label for="read-no">No</label>
+                            <input type="radio" name="read" id="read-no" value="no" checked>
+                        </div>
+                    </div>
+                    <div class="form-element">
+                        <button class="submit-btn" type="submit">Submit</button>
+                    </div>
+                </form>
+                <button class="cancel-btn">Cancel</button>
+            </dialog>
         </section>
         <section class="books"></section>
     </main>
