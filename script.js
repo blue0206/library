@@ -40,7 +40,7 @@ function addToDisplay(bookObject)
 {
     const display = document.querySelector('.books');
     
-    //Boilerplate for a single book.
+    //Boilerplate for a single book - book > title+author+pages+read+remove
     const book = document.createElement('div');
     book.setAttribute('class', 'book');
 
@@ -71,13 +71,13 @@ function addToDisplay(bookObject)
         read.style.backgroundColor = "red";
     }
     read.setAttribute('class', 'read');
-    toggleRead(read);
+    toggleRead(read);                       //Attach event listener for toggling read status.
     book.appendChild(read);
 
     const remove = document.createElement('button');
     remove.textContent = "REMOVE";
     remove.setAttribute('class', 'remove');
-    removeBook(remove, book);
+    removeBook(remove, book);               //Attach event listener for removing book.
     book.appendChild(remove);
 
     //Append book to display.
