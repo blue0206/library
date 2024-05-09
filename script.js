@@ -63,7 +63,8 @@ function addToDisplay(bookObject)
     read.textContent = bookObject.read;
     read.style.backgroundColor = bookObject.read == "READ" ? "green" : "red";
     read.setAttribute('class', 'read');
-    toggleRead(read);                       //Attach event listener for toggling read status.
+    //Attach event listener for toggling read status.
+    read.addEventListener('click', () => bookObject.toggleRead(read));
     book.appendChild(read);
 
     const remove = document.createElement('button');
@@ -78,20 +79,10 @@ function addToDisplay(bookObject)
 
 
 //Function to change 'read' status.
-function toggleRead(read)
-{
-    read.addEventListener('click', () => {
-        if (read.textContent == "READ") 
-        {
-          read.textContent = "NOT READ";
-          read.style.backgroundColor = "red";
-        } 
-        else 
-        {
-          read.textContent = "READ";
-          read.style.backgroundColor = "green";
-        }
-    });
+Book.prototype.toggleRead = function(readBtn) {
+    this.read = this.read == "READ" ? "NOT READ" : "READ";
+    readBtn.textContent = this.read;
+    readBtn.style.backgroundColor = this.read == "READ" ? "green" : "red";
 }
 
 
