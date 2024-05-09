@@ -18,7 +18,7 @@ function addBook()
     let title = document.querySelector('#book-title').value;
     let author = document.querySelector('#author').value;
     let pages = document.querySelector('#pages').value;
-    let read = document.querySelector('[name="read"]:checked').value == "yes" ? true : false;
+    let read = document.querySelector('[name="read"]:checked').value == "yes" ? "READ" : "NOT READ";
 
     let book = new Book(title, author, pages, read);
     myLibrary.push(book);
@@ -60,16 +60,8 @@ function addToDisplay(bookObject)
     book.appendChild(pages);
 
     const read = document.createElement('button');
-    if (bookObject.read == true)
-    {
-        read.textContent = "READ";
-        read.style.backgroundColor = "green";
-    }
-    else
-    {
-        read.textContent = "NOT READ";
-        read.style.backgroundColor = "red";
-    }
+    read.textContent = bookObject.read;
+    read.style.backgroundColor = bookObject.read == "READ" ? "green" : "red";
     read.setAttribute('class', 'read');
     toggleRead(read);                       //Attach event listener for toggling read status.
     book.appendChild(read);
