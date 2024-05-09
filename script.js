@@ -63,8 +63,12 @@ function addToDisplay(bookObject)
     read.textContent = bookObject.read;
     read.style.backgroundColor = bookObject.read == "READ" ? "green" : "red";
     read.setAttribute('class', 'read');
-    //Attach event listener for toggling read status.
-    read.addEventListener('click', () => bookObject.toggleRead(read));
+        //Attach event listener for toggling read status.
+    read.addEventListener('click', () => {
+        bookObject.toggleRead();
+        read.textContent = bookObject.read;
+        read.style.backgroundColor = bookObject.read == "READ" ? "green" : "red";
+    });
     book.appendChild(read);
 
     const remove = document.createElement('button');
@@ -79,10 +83,8 @@ function addToDisplay(bookObject)
 
 
 //Function to change 'read' status.
-Book.prototype.toggleRead = function(readBtn) {
+Book.prototype.toggleRead = function() {
     this.read = this.read == "READ" ? "NOT READ" : "READ";
-    readBtn.textContent = this.read;
-    readBtn.style.backgroundColor = this.read == "READ" ? "green" : "red";
 }
 
 
@@ -95,8 +97,7 @@ function removeBook(removeBtn, book)
 }
 
 
-// Show modal dialog for adding books upon clicking the
-// 'New Book' button
+// Show modal dialog for adding books upon clicking the 'New Book' button
 const newBook = document.querySelector('button.new-book');
 const dialog = document.querySelector('dialog');
 newBook.addEventListener('click', () => {
