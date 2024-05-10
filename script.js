@@ -3,14 +3,17 @@ const myLibrary = [];
 
 
 //Book object constructor function
-function Book(title, author, pages, read)
+function Book(title, author, pages, read, uniqueID)
 {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.uniqueID = uniqueID;
 }
 
+
+let uniqueID = 0;    //Serves as unique identification for each successively created object.
 
 //Function to add book based on user input
 function addBook()
@@ -20,7 +23,7 @@ function addBook()
     let pages = document.querySelector('#pages').value;
     let read = document.querySelector('[name="read"]:checked').value == "yes" ? "READ" : "NOT READ";
 
-    let book = new Book(title, author, pages, read);
+    let book = new Book(title, author, pages, read, uniqueID++);
     myLibrary.push(book);
     addToDisplay(book);
 }
@@ -74,7 +77,11 @@ function addToDisplay(bookObject)
     const remove = document.createElement('button');
     remove.textContent = "REMOVE";
     remove.setAttribute('class', 'remove');
-    removeBook(remove, book);               //Attach event listener for removing book.
+        //Attach event listener for removing book.
+    remove.addEventListener('click', () => {
+        removeBook(bookObject.uniqueID);
+        display.removeChild(book);
+    });
     book.appendChild(remove);
 
     //Append book to display.
@@ -89,11 +96,17 @@ Book.prototype.toggleRead = function() {
 
 
 //Function to remove book from library.
-function removeBook(removeBtn, book)
+function removeBook(bookID)
 {
-    removeBtn.addEventListener('click', () => {
-        document.querySelector('.books').removeChild(book);
-    });
+    for (let i=0; i < myLibrary.length; i++)
+    {
+        if (bookID == myLibrary[i].uniqueID)
+        {
+            myLibrary[i] = myLibrary[myLibrary.length-1];
+            myLibrary.pop();
+            break;
+        }
+    }
 }
 
 
