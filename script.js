@@ -2,15 +2,22 @@
 const myLibrary = [];
 
 
-//Book object constructor function
-function Book(title, author, pages, read, uniqueID)
+class Book
 {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.uniqueID = uniqueID;
-}
+    constructor(title, author, pages, read, uniqueID)
+    {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.uniqueID = uniqueID;
+    };
+
+    //Function to change 'read' status.
+    toggleRead() {
+        this.read = this.read == "READ" ? "NOT READ" : "READ";
+    };
+};
 
 
 let uniqueID = 0;    //Serves as unique identification for each successively created object.
@@ -86,12 +93,6 @@ function addToDisplay(bookObject)
 
     //Append book to display.
     display.appendChild(book);
-}
-
-
-//Function to change 'read' status.
-Book.prototype.toggleRead = function() {
-    this.read = this.read == "READ" ? "NOT READ" : "READ";
 }
 
 
