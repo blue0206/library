@@ -129,6 +129,13 @@ form {
 	gap: 8px;
 }
 
+.prompt {
+	visibility: hidden;
+	color: hsl(0, 100%, 50%);
+	font-size: 0.8rem;
+	margin-top: -8px;
+}
+
 .radio {
 	display: grid;
 	grid-template-columns: 1fr 1fr;

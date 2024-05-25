@@ -59,9 +59,16 @@ class DisplayControl
         let pages = document.querySelector('#pages').value;
         let read = document.querySelector('[name="read"]:checked').value == "yes" ? "READ" : "NOT READ";
 
+        if (title == "" || author == "" || pages == "")
+        {
+            return false;
+        }
+
         let book = new Book(title, author, pages, read, this.uniqueID++);
         myLibrary.addToLibrary(book);
         this.addToDisplay(book);
+
+        return true;
     };
 
     //Function for adding book to display.
@@ -120,8 +127,20 @@ class DisplayControl
         //to library.
         const submitBtn = document.querySelector('.submit-btn');
         submitBtn.addEventListener('click', () => {
-            this.addBook();
-            dialog.close();
+            const invalidPrompt = Array.from(document.querySelectorAll('.prompt'));
+            if (this.addBook())
+            {
+                invalidPrompt.forEach((input) => {
+                    input.style.visibility = 'hidden';
+                });
+                dialog.close();
+            }
+            else
+            {
+                invalidPrompt.forEach((input) => {
+                    input.style.visibility = 'visible';
+                });
+            }
         });
 
 
