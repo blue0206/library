@@ -10,7 +10,21 @@ class Library
     {
         this.libArr.push(book);
     }
-}
+
+    //Function to remove book from library.
+    removeBook(bookID)
+    {
+        for (let i=0; i < this.libArr.length; i++)
+        {
+            if (bookID == this.libArr[i].uniqueID)
+            {
+                this.libArr[i] = this.libArr[this.libArr.length-1];
+                this.libArr.pop();
+                break;
+            }
+        }
+    };
+};
 
 const myLibrary = new Library();
 
@@ -99,28 +113,13 @@ function addToDisplay(bookObject)
     remove.setAttribute('class', 'remove');
         //Attach event listener for removing book.
     remove.addEventListener('click', () => {
-        removeBook(bookObject.uniqueID);
+        myLibrary.removeBook(bookObject.uniqueID);
         display.removeChild(book);
     });
     book.appendChild(remove);
 
     //Append book to display.
     display.appendChild(book);
-};
-
-
-//Function to remove book from library.
-function removeBook(bookID)
-{
-    for (let i=0; i < myLibrary.length; i++)
-    {
-        if (bookID == myLibrary[i].uniqueID)
-        {
-            myLibrary[i] = myLibrary[myLibrary.length-1];
-            myLibrary.pop();
-            break;
-        }
-    }
 };
 
 
