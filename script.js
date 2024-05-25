@@ -8,7 +8,7 @@ class Library
     addToLibrary(book)
     {
         this.libArr.push(book);
-    }
+    };
 
     //Function to remove book from library.
     removeBook(bookID)
@@ -99,7 +99,7 @@ class DisplayControl
         read.textContent = bookObject.read;
         read.style.backgroundColor = bookObject.read == "READ" ? "green" : "red";
         read.setAttribute('class', 'read');
-            //Attach event listener for toggling read status.
+        //Attach event listener for toggling read status.
         read.addEventListener('click', () => {
             bookObject.toggleRead();
             read.textContent = bookObject.read;
@@ -110,7 +110,7 @@ class DisplayControl
         const remove = document.createElement('button');
         remove.textContent = "REMOVE";
         remove.setAttribute('class', 'remove');
-            //Attach event listener for removing book.
+        //Attach event listener for removing book.
         remove.addEventListener('click', () => {
             myLibrary.removeBook(bookObject.uniqueID);
             display.removeChild(book);
@@ -123,8 +123,7 @@ class DisplayControl
 
     eventListeners()
     {
-        //Attaching event listener to submit button to add new book
-        //to library.
+        //Attaching event listener to submit button to add new book to library.
         const submitBtn = document.querySelector('.submit-btn');
         submitBtn.addEventListener('click', () => {
             const invalidPrompt = Array.from(document.querySelectorAll('.prompt'));
@@ -143,7 +142,6 @@ class DisplayControl
             }
         });
 
-
         // Show modal dialog for adding books upon clicking the 'New Book' button
         const newBook = document.querySelector('button.new-book');
         const dialog = document.querySelector('dialog');
@@ -151,14 +149,14 @@ class DisplayControl
             dialog.showModal();
         });
 
-
         //Function for closing the dialog upon clicking the 'Cancel' button.
         const cancelBtn = document.querySelector('.cancel-btn');
         cancelBtn.addEventListener('click', () => {
             dialog.close();
         });
-    }
+    };
 };
+
 
 const myLibrary = new Library();
 
