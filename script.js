@@ -53,21 +53,68 @@ class DisplayControl
         this.uniqueID = 0;      //Serves as unique identification for each successively created object.
     };
 
-    
-};
+    //Function to add book based on user input
+    addBook()
+    {
+        let title = document.querySelector('#book-title').value;
+        let author = document.querySelector('#author').value;
+        let pages = document.querySelector('#pages').value;
+        let read = document.querySelector('[name="read"]:checked').value == "yes" ? "READ" : "NOT READ";
 
+        let book = new Book(title, author, pages, read, uniqueID++);
+        myLibrary.addToLibrary(book);
+        this.addToDisplay(book);
+    };
 
-//Function to add book based on user input
-function addBook()
-{
-    let title = document.querySelector('#book-title').value;
-    let author = document.querySelector('#author').value;
-    let pages = document.querySelector('#pages').value;
-    let read = document.querySelector('[name="read"]:checked').value == "yes" ? "READ" : "NOT READ";
+    //Function for adding book to display.
+    addToDisplay(bookObject)
+    {
+        const display = document.querySelector('.books');
+        
+        //Boilerplate for a single book - book > title+author+pages+read+remove
+        const book = document.createElement('div');
+        book.setAttribute('class', 'book');
 
-    let book = new Book(title, author, pages, read, uniqueID++);
-    myLibrary.addToLibrary(book);
-    addToDisplay(book);
+        const title = document.createElement('div');
+        title.textContent = bookObject.title;
+        title.setAttribute('class', 'title');
+        book.appendChild(title);
+
+        const author = document.createElement('div');
+        author.textContent = bookObject.author;
+        author.setAttribute('class', 'author');
+        book.appendChild(author);
+
+        const pages = document.createElement('div');
+        pages.textContent = bookObject.pages;
+        pages.setAttribute('class', 'pages');
+        book.appendChild(pages);
+
+        const read = document.createElement('button');
+        read.textContent = bookObject.read;
+        read.style.backgroundColor = bookObject.read == "READ" ? "green" : "red";
+        read.setAttribute('class', 'read');
+            //Attach event listener for toggling read status.
+        read.addEventListener('click', () => {
+            bookObject.toggleRead();
+            read.textContent = bookObject.read;
+            read.style.backgroundColor = bookObject.read == "READ" ? "green" : "red";
+        });
+        book.appendChild(read);
+
+        const remove = document.createElement('button');
+        remove.textContent = "REMOVE";
+        remove.setAttribute('class', 'remove');
+            //Attach event listener for removing book.
+        remove.addEventListener('click', () => {
+            myLibrary.removeBook(bookObject.uniqueID);
+            display.removeChild(book);
+        });
+        book.appendChild(remove);
+
+        //Append book to display.
+        display.appendChild(book);
+    };
 };
 
 
@@ -78,57 +125,6 @@ submitBtn.addEventListener('click', () => {
     addBook();
     dialog.close();
 });
-
-
-//Function for adding book to display.
-function addToDisplay(bookObject)
-{
-    const display = document.querySelector('.books');
-    
-    //Boilerplate for a single book - book > title+author+pages+read+remove
-    const book = document.createElement('div');
-    book.setAttribute('class', 'book');
-
-    const title = document.createElement('div');
-    title.textContent = bookObject.title;
-    title.setAttribute('class', 'title');
-    book.appendChild(title);
-
-    const author = document.createElement('div');
-    author.textContent = bookObject.author;
-    author.setAttribute('class', 'author');
-    book.appendChild(author);
-
-    const pages = document.createElement('div');
-    pages.textContent = bookObject.pages;
-    pages.setAttribute('class', 'pages');
-    book.appendChild(pages);
-
-    const read = document.createElement('button');
-    read.textContent = bookObject.read;
-    read.style.backgroundColor = bookObject.read == "READ" ? "green" : "red";
-    read.setAttribute('class', 'read');
-        //Attach event listener for toggling read status.
-    read.addEventListener('click', () => {
-        bookObject.toggleRead();
-        read.textContent = bookObject.read;
-        read.style.backgroundColor = bookObject.read == "READ" ? "green" : "red";
-    });
-    book.appendChild(read);
-
-    const remove = document.createElement('button');
-    remove.textContent = "REMOVE";
-    remove.setAttribute('class', 'remove');
-        //Attach event listener for removing book.
-    remove.addEventListener('click', () => {
-        myLibrary.removeBook(bookObject.uniqueID);
-        display.removeChild(book);
-    });
-    book.appendChild(remove);
-
-    //Append book to display.
-    display.appendChild(book);
-};
 
 
 // Show modal dialog for adding books upon clicking the 'New Book' button
