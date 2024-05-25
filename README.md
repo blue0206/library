@@ -90,7 +90,7 @@ failed ti accomplish last time) by creating three different classes for each pur
 
 It worked out pretty well. However, I could have shortened the addToDisplay() method (which
 used to be a function) but I decided not to as in the end it is doing the job of creating
-the DOM elements. The application of event listeners to `READ` and `REMOVE` buttons was
+the DOM elements. The application of event listeners to `READ` and `REMOVE` buttons were
 also left as is because creating a whole different method for the same would have been
 a redundant and cumbersome process.
 
