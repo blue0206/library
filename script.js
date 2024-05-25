@@ -25,8 +25,6 @@ class Library
     };
 };
 
-const myLibrary = new Library();
-
 
 class Book
 {
@@ -61,7 +59,7 @@ class DisplayControl
         let pages = document.querySelector('#pages').value;
         let read = document.querySelector('[name="read"]:checked').value == "yes" ? "READ" : "NOT READ";
 
-        let book = new Book(title, author, pages, read, uniqueID++);
+        let book = new Book(title, author, pages, read, this.uniqueID++);
         myLibrary.addToLibrary(book);
         this.addToDisplay(book);
     };
@@ -115,28 +113,35 @@ class DisplayControl
         //Append book to display.
         display.appendChild(book);
     };
+
+    eventListeners()
+    {
+        //Attaching event listener to submit button to add new book
+        //to library.
+        const submitBtn = document.querySelector('.submit-btn');
+        submitBtn.addEventListener('click', () => {
+            this.addBook();
+            dialog.close();
+        });
+
+
+        // Show modal dialog for adding books upon clicking the 'New Book' button
+        const newBook = document.querySelector('button.new-book');
+        const dialog = document.querySelector('dialog');
+        newBook.addEventListener('click', () => {
+            dialog.showModal();
+        });
+
+
+        //Function for closing the dialog upon clicking the 'Cancel' button.
+        const cancelBtn = document.querySelector('.cancel-btn');
+        cancelBtn.addEventListener('click', () => {
+            dialog.close();
+        });
+    }
 };
 
+const myLibrary = new Library();
 
-//Attaching event listener to submit button to add new book
-//to library.
-const submitBtn = document.querySelector('.submit-btn');
-submitBtn.addEventListener('click', () => {
-    addBook();
-    dialog.close();
-});
-
-
-// Show modal dialog for adding books upon clicking the 'New Book' button
-const newBook = document.querySelector('button.new-book');
-const dialog = document.querySelector('dialog');
-newBook.addEventListener('click', () => {
-    dialog.showModal();
-});
-
-
-//Function for closing the dialog upon clicking the 'Cancel' button.
-const cancelBtn = document.querySelector('.cancel-btn');
-cancelBtn.addEventListener('click', () => {
-    dialog.close();
-});
+const display = new DisplayControl();
+display.eventListeners();
