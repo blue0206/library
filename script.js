@@ -1,5 +1,18 @@
 //Array to store books.
-const myLibrary = [];
+class Library
+{
+    constructor()
+    {
+        this.libArr = [];
+    };
+
+    addToLibrary(book)
+    {
+        this.libArr.push(book);
+    }
+}
+
+const myLibrary = new Library();
 
 
 class Book
@@ -31,9 +44,9 @@ function addBook()
     let read = document.querySelector('[name="read"]:checked').value == "yes" ? "READ" : "NOT READ";
 
     let book = new Book(title, author, pages, read, uniqueID++);
-    myLibrary.push(book);
+    myLibrary.addToLibrary(book);
     addToDisplay(book);
-}
+};
 
 
 //Attaching event listener to submit button to add new book
@@ -42,7 +55,7 @@ const submitBtn = document.querySelector('.submit-btn');
 submitBtn.addEventListener('click', () => {
     addBook();
     dialog.close();
-})
+});
 
 
 //Function for adding book to display.
@@ -93,7 +106,7 @@ function addToDisplay(bookObject)
 
     //Append book to display.
     display.appendChild(book);
-}
+};
 
 
 //Function to remove book from library.
@@ -108,7 +121,7 @@ function removeBook(bookID)
             break;
         }
     }
-}
+};
 
 
 // Show modal dialog for adding books upon clicking the 'New Book' button
