@@ -1,4 +1,3 @@
-//Array to store books.
 class Library
 {
     constructor()
@@ -47,7 +46,16 @@ class Book
 };
 
 
-let uniqueID = 0;    //Serves as unique identification for each successively created object.
+class DisplayControl
+{
+    constructor()
+    {
+        this.uniqueID = 0;      //Serves as unique identification for each successively created object.
+    };
+
+    
+};
+
 
 //Function to add book based on user input
 function addBook()
