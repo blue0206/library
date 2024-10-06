@@ -59,16 +59,9 @@ class DisplayControl
         let pages = document.querySelector('#pages').value;
         let read = document.querySelector('[name="read"]:checked').value == "yes" ? "READ" : "NOT READ";
 
-        if (title == "" || author == "" || pages == "")
-        {
-            return false;
-        }
-
         let book = new Book(title, author, pages, read, this.uniqueID++);
         myLibrary.addToLibrary(book);
         this.addToDisplay(book);
-
-        return true;
     };
 
     //Function for adding book to display.
@@ -124,21 +117,17 @@ class DisplayControl
     eventListeners()
     {
         //Attaching event listener to submit button to add new book to library.
+        const title = document.querySelector("#book-title");
+        const author = document.querySelector("#author");
+        const pages = document.querySelector("#pages");
         const submitBtn = document.querySelector('.submit-btn');
-        submitBtn.addEventListener('click', () => {
-            const invalidPrompt = Array.from(document.querySelectorAll('.prompt'));
-            if (this.addBook())
+        submitBtn.addEventListener('click', (event) => {
+            if (title.checkValidity() && author.checkValidity() && pages.checkValidity())
             {
-                invalidPrompt.forEach((input) => {
-                    input.style.visibility = 'hidden';
-                });
+                this.addBook();
+                event.preventDefault();
+                resetFields();
                 dialog.close();
-            }
-            else
-            {
-                invalidPrompt.forEach((input) => {
-                    input.style.visibility = 'visible';
-                });
             }
         });
 
@@ -153,7 +142,16 @@ class DisplayControl
         const cancelBtn = document.querySelector('.cancel-btn');
         cancelBtn.addEventListener('click', () => {
             dialog.close();
+            resetFields();
         });
+
+        function resetFields()
+        {
+            title.value = "";
+            author.value = "";
+            pages.value = "";
+            document.querySelector("#read-no").checked = true;
+        }
     };
 };
 
