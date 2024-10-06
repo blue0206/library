@@ -18,18 +18,15 @@
                 <form>
                     <div class="form-element">
                         <label for="book-title">Book Title</label>
-                        <input type="text" name="book-title" id="book-title" />
-                        <div class="prompt">*This field cannot be left blank.</div>
+                        <input type="text" name="book-title" id="book-title" required />
                     </div>
                     <div class="form-element">
                         <label for="author">Author</label>
-                        <input type="text" name="author" id="author" />
-                        <div class="prompt">*This field cannot be left blank.</div>
+                        <input type="text" name="author" id="author" required />
                     </div>
                     <div class="form-element">
                         <label for="pages">Pages</label>
-                        <input type="number" name="pages" id="pages" />
-                        <div class="prompt">*This field cannot be left blank.</div>
+                        <input type="number" name="pages" id="pages" required />
                     </div>
                     <div class="form-element">
                         <div>Have you read the book?</div>
@@ -45,7 +42,7 @@
                         </div>
                     </div>
                     <div class="form-element">
-                        <button class="submit-btn" type="reset">Add Book</button>
+                        <button class="submit-btn" type="submit">Add Book</button>
                     </div>
                     <div class="form-element">
                         <button class="cancel-btn" type="button">Cancel</button>
